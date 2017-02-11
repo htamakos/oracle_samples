@@ -1,0 +1,11 @@
+CREATE TABLE interval_tab (
+  id NUMBER,
+  code VARCHAR2(10),
+  description VARCHAR2(50),
+  created_date DATE
+)
+PARTITION BY RANGE (created_date)
+INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
+(
+  PARTITION part_01 VALUES LESS THAN (TO_DATE('01-NOV-2007', 'DD-MON-YYYY'))
+);
