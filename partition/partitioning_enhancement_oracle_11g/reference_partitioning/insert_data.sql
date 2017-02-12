@@ -1,0 +1,12 @@
+INSERT INTO parent_tab VALUES (1, 'ONE', '1 ONE', SYSDATE);
+INSERT INTO parent_tab VALUES (2, 'TWO', '2 TWO', SYSDATE);
+INSERT INTO parent_tab VALUES (3, 'THREE', '3 THREE', ADD_MONTHS(SYSDATE, 12));
+
+INSERT INTO child_tab VALUES (1, 1, 'ONE', '1 1 ONE', SYSDATE);
+INSERT INTO child_tab VALUES (2, 3, 'TWO', '2 3 TWO', SYSDATE);
+INSERT INTO child_tab VALUES (3, 3, 'THREE', '3 3 THREE', SYSDATE);
+
+COMMIT;
+EXEC DBMS_STATS.gather_table_stats(USER, 'PARENT_TAB');
+EXEC DBMS_STATS.gather_table_stats(USER, 'CHILD_TAB');
+
